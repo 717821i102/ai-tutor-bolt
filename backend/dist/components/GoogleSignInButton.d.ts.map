@@ -1,0 +1,1 @@
+{"version":3,"file":"GoogleSignInButton.d.ts","sourceRoot":"","sources":["../../src/components/GoogleSignInButton.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAmB,MAAM,OAAO,CAAC;AAMxC,UAAU,uBAAuB;IAC/B,IAAI,CAAC,EAAE,MAAM,CAAC;CACf;AAED,QAAA,MAAM,kBAAkB,EAAE,KAAK,CAAC,EAAE,CAAC,uBAAuB,CAyDzD,CAAC;AAEF,eAAe,kBAAkB,CAAC"}
