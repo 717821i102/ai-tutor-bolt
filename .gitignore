@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dependencies
 node_modules/
 /.pnp
@@ -84,3 +85,7 @@ Icon
 *.bak
 tmp/
 temp/
+=======
+node_modules/
+.env
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc

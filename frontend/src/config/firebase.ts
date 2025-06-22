@@ -1,6 +1,10 @@
 import { initializeApp } from 'firebase/app';
+<<<<<<< HEAD
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+=======
+import { getAuth } from 'firebase/auth';
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -11,6 +15,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
+<<<<<<< HEAD
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -30,4 +35,8 @@ if (process.env.NODE_ENV === 'development' && process.env.REACT_APP_USE_EMULATOR
   }
 }
 
+=======
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
 export default app;

@@ -10,7 +10,10 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Lessons from './pages/Lessons';
 import LessonView from './pages/LessonView';
+<<<<<<< HEAD
 import LessonGenerate from './pages/LessonGenerate';
+=======
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
 import QA from './pages/QA';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
@@ -45,6 +48,7 @@ function App() {
               }
             />
             <Route
+<<<<<<< HEAD
               path="/lessons/generate"
               element={
                 <ProtectedRoute>
@@ -55,6 +59,8 @@ function App() {
               }
             />
             <Route
+=======
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
               path="/lessons/:id"
               element={
                 <ProtectedRoute>

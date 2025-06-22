@@ -1,4 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+<<<<<<< HEAD
+=======
+import { auth } from '../config/firebase';
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
 import { 
   User as FirebaseUser,
   signInWithEmailAndPassword,
@@ -6,6 +10,7 @@ import {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
+<<<<<<< HEAD
   signInWithPopup,
   updateProfile
 } from 'firebase/auth';
@@ -27,6 +32,17 @@ interface User {
       reminders: boolean;
     };
   };
+=======
+  signInWithPopup
+} from 'firebase/auth';
+import axios from 'axios';
+
+interface User {
+  id: string;
+  email: string;
+  displayName: string;
+  avatarUrl?: string;
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
 }
 
 interface AuthContextType {
@@ -36,7 +52,11 @@ interface AuthContextType {
   register: (email: string, password: string, displayName: string) => Promise<void>;
   loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
+<<<<<<< HEAD
   updateUserProfile: (updates: Partial<User>) => Promise<void>;
+=======
+  token: string | null;
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -52,6 +72,7 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
 
   // Set up axios interceptor for auth token
   useEffect(() => {
@@ -68,11 +89,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     return () => axios.interceptors.request.eject(interceptor);
   }, []);
+=======
+  const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser: FirebaseUser | null) => {
       if (firebaseUser) {
         try {
+<<<<<<< HEAD
           // Get Firebase ID token
           const token = await firebaseUser.getIdToken();
           localStorage.setItem('firebase_token', token);
@@ -93,6 +118,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       } else {
         setUser(null);
         localStorage.removeItem('firebase_token');
+=======
+          const idToken = await firebaseUser.getIdToken();
+          const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/firebase`, {
+            firebaseUid: firebaseUser.uid,
+            email: firebaseUser.email,
+            displayName: firebaseUser.displayName,
+            avatarUrl: firebaseUser.photoURL
+          });
+
+          const { token: jwtToken, user: userData } = response.data;
+          setToken(jwtToken);
+          setUser(userData);
+          localStorage.setItem('token', jwtToken);
+          
+          // Set default authorization header
+          axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+        } catch (error) {
+          console.error('Firebase auth error:', error);
+          setUser(null);
+          setToken(null);
+          localStorage.removeItem('token');
+        }
+      } else {
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem('token');
+        delete axios.defaults.headers.common['Authorization'];
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
       }
       setLoading(false);
     });
@@ -106,7 +159,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (email: string, password: string, displayName: string) => {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+<<<<<<< HEAD
     await updateProfile(userCredential.user, { displayName });
+=======
+    // Update display name
+    await userCredential.user.updateProfile({ displayName });
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
   };
 
   const loginWithGoogle = async () => {
@@ -118,6 +176,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     await signOut(auth);
   };
 
+<<<<<<< HEAD
   const updateUserProfile = async (updates: Partial<User>) => {
     try {
       const response = await axios.put(`${process.env.REACT_APP_API_BASE_URL}/auth/me`, updates);
@@ -133,6 +192,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+=======
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
   const value = {
     user,
     loading,
@@ -140,7 +201,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     register,
     loginWithGoogle,
     logout,
+<<<<<<< HEAD
     updateUserProfile
+=======
+    token
+>>>>>>> 73456183a892c1def48b1b01a40249c86a5e07dc
   };
 
   return (
