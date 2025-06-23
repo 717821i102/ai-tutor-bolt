@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   Box,
   VStack,
@@ -58,13 +58,7 @@ const LessonView: React.FC = () => {
 
   const cardBg = useColorModeValue('white', 'gray.800');
 
-  useEffect(() => {
-    if (id) {
-      fetchLesson();
-    }
-  }, [id]);
-
-  const fetchLesson = async () => {
+  const fetchLesson = useCallback(async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/lessons/${id}`);
       setLesson(response.data);
@@ -74,7 +68,13 @@ const LessonView: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      fetchLesson();
+    }
+  }, [id, fetchLesson]);
 
   const handleNext = () => {
     if (lesson && currentSection < lesson.content.length - 1) {

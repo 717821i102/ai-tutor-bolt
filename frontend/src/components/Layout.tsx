@@ -25,7 +25,7 @@ import {
   Hide
 } from '@chakra-ui/react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FiHome, FiBook, FiMessageCircle, FiUser, FiSettings, FiBarChart3, FiSun, FiMoon, FiMenu } from 'react-icons/fi';
+import { FiHome, FiBook, FiMessageCircle, FiUser, FiSettings, FiBarChart, FiSun, FiMoon, FiMenu } from 'react-icons/fi';
 import { useAuth } from '../contexts/AuthContext';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -42,7 +42,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     { name: 'Dashboard', href: '/', icon: FiHome },
     { name: 'Lessons', href: '/lessons', icon: FiBook },
     { name: 'Q&A', href: '/qa', icon: FiMessageCircle },
-    { name: 'Analytics', href: '/analytics', icon: FiBarChart3 },
+    { name: 'Analytics', href: '/analytics', icon: FiBarChart },
     { name: 'Profile', href: '/profile', icon: FiUser },
     { name: 'Settings', href: '/settings', icon: FiSettings },
   ];

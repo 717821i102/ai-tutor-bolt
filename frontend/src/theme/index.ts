@@ -5,7 +5,7 @@ const config: ThemeConfig = {
   useSystemColorMode: true,
 };
 
-export const theme = extendTheme({
+const theme = extendTheme({
   config,
   fonts: {
     heading: 'Inter, sans-serif',
@@ -57,3 +57,5 @@ export const theme = extendTheme({
     },
   },
 });
+
+export default theme;

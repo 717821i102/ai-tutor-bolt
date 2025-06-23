@@ -11,7 +11,6 @@ import {
   Switch,
   Select,
   Button,
-  Divider,
   useColorModeValue,
   Alert,
   AlertIcon
